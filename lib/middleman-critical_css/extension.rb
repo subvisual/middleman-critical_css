@@ -4,6 +4,8 @@ module Middleman
   class CriticalCssExtension < Extension
     option :binary, "node_modules/.bin/critical", "The criticalCSS binary to use"
     option :minify, true, "Minify inlined CSS"
+    option :width, 1920, "Viewport width"
+    option :height, 1080, "Viewport height"
 
     def after_build
       Dir.glob(html_files) do |file|
@@ -25,7 +27,9 @@ module Middleman
         asset_path,
         "--base", app.config[:build_dir],
         "--htmlTarget", file,
-        "--extract", "--inline"
+        "--extract", "--inline",
+        "--width", options.width,
+        "--height", options.height,
       ]
       args << "--minify" if options.minify
 
