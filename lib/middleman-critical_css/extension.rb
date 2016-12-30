@@ -27,7 +27,7 @@ module Middleman
         asset_path,
         "--base", app.config[:build_dir],
         "--htmlTarget", file,
-        "--extract", "--inline",
+        "--inline",
         "--width", options.width,
         "--height", options.height,
       ]
